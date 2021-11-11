@@ -60,55 +60,23 @@ const arr = [
     [7, 4, 1],
 ];
 
-const arr1 = arr[0];
-console.log('Массив №1 - ' + arr1);
-let newSum1 = 0;
-const sum1 = arr1 =>{
-    for(i = 0; i < arr1.length; i++){
-        newSum1 += arr1[i];
-    }
-    return newSum1;
-};
-console.log(`Сумма первого массива = ${sum1(arr1)}`);
+let sumArr;//сумма каждого массива
+let maxSum = [];//в этот новый массив запишутся все суммы массивов по порядку
 
-const arr2 = arr[1];
-console.log('Массив №2 - ' + arr2);
-let newSum2 = 0;
-const sum2 = arr2 =>{
-    for(i = 0; i < arr2.length; i++){
-        newSum2 += arr2[i];
+for(let i = 0; i < arr.length; i++){
+    sumArr = 0;
+    for(let j = 0; j < arr.length; j++){
+        sumArr += arr[i][j];//находим сумму массива
     }
-    return newSum2;
-};
-console.log(`Сумма второго массива = ${sum2(arr2)}`);
-
-const arr3 = arr[2];
-console.log('Массив №3 - ' + arr3);
-let newSum3 = 0;
-const sum3 = arr3 =>{
-    for(i = 0; i < arr3.length; i++){
-        newSum3 += arr3[i];
-    }
-    return newSum3;
-};
-console.log(`Сумма третьего массива = ${sum3(arr3)}`);
-
-if(Math.max(sum1(arr1),sum3(arr3),sum2(arr2)) === sum2(arr2)){
-    console.log('Второй массив самый большой');
-    const minNumber = Math.min(...arr2);
-    console.log(minNumber + ' - самое маленькое число этого массива');
-} else if(Math.max(sum1(arr1),sum3(arr3),sum2(arr2)) === sum1(arr1)){
-    console.log('Первый массив самый большой');
-    const minNumber = Math.min(...arr1);
-    console.log(minNumber + ' - самое маленькое число этого массива');
-} else {
-    console.log('Второй массив самый большой');
-    const minNumber = Math.min(...arr3);
-    console.log(minNumber + ' - самое маленькое число этого массива');
+    console.log(`Сумма чисел массива № ${i} равна ${sumArr}`);
+    maxSum.push(sumArr);//добавляем новую сумму в конец массива сумм
 }
 
-
-
-
-
+const maxSumArr = Math.max(...maxSum);//находим в массиве сумм максимальную сумму
+    for (let m = 0; m < maxSum.length; m++){
+        if(maxSum[m] === maxSumArr){//вычисляем индекс массива с самой большой суммой чисел
+            console.log(`Самый большой по сумме чисел массив с индексом ${m} имеет сумму всех чисел ${maxSumArr}`);
+            console.log(Math.min(...arr[m]) + ' - самое маленькое число этого массива');
+        }
+    }
 
